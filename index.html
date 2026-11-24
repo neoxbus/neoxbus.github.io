@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thai & Chinese Typography Showcase</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts Imports -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Kanit:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@600;700&family=Prompt:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0284c7',
+              700: '#0369a1',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    .dark ::-webkit-scrollbar-thumb {
+      background: #334155;
+    }
+
+    /* Font Definitions */
+    /* Font Set 1: Prompt (Headings) + IBM Plex Sans Thai (Body) */
+    .font-pair-1 .font-heading {
+      font-family: 'Prompt', sans-serif;
+      font-weight: 700;
+    }
+    .font-pair-1 .font-body {
+      font-family: 'IBM Plex Sans Thai', sans-serif;
+      font-weight: 400;
+    }
+    .font-pair-1 .font-chinese {
+      font-family: 'Noto Sans SC', 'IBM Plex Sans Thai', sans-serif;
+      font-weight: 500;
+    }
+
+    /* Font Set 2: Kanit (Headings) + Noto Sans Thai (Body) */
+    .font-pair-2 .font-heading {
+      font-family: 'Kanit', sans-serif;
+      font-weight: 600;
+    }
+    .font-pair-2 .font-body {
+      font-family: 'Noto Sans Thai', sans-serif;
+      font-weight: 400;
+    }
+    .font-pair-2 .font-chinese {
+      font-family: 'Noto Serif SC', 'Noto Sans Thai', serif;
+      font-weight: 600;
+    }
+
+    /* Transitions */
+    .smooth-transition {
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col font-sans smooth-transition">
+
+  <!-- Navigation Header -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 smooth-transition">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white font-bold text-xl shadow-md">
+          字
+        </div>
+        <div>
+          <h1 class="font-bold text-lg leading-tight tracking-tight">Thai Typography & Chinese Demo</h1>
+          <p class="text-xs text-slate-500 dark:text-slate-400">ระบบทดสอบคู่ฟอนต์ไทยและอักษรจีน</p>
+        </div>
+      </div>
+
+      <!-- Quick Actions Controls -->
+      <div class="flex items-center space-x-3">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 transition-all flex items-center space-x-2" title="Toggle Theme">
+          <i data-lucide="sun" class="w-4 h-4 hidden dark:block text-amber-400"></i>
+          <i data-lucide="moon" class="w-4 h-4 block dark:hidden text-indigo-600"></i>
+          <span class="text-xs font-medium hidden sm:inline" id="themeLabel">Light Mode</span>
+        </button>
+
+        <!-- Code Snippet Drawer Toggle -->
+        <button onclick="toggleCodeModal()" class="px-3.5 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold shadow-sm transition-all flex items-center space-x-2">
+          <i data-lucide="code" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">คัดลอก CSS</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Layout -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-12 gap-8">
+
+    <!-- Sidebar Controls -->
+    <aside class="lg:col-span-4 space-y-6">
+      <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm space-y-6 smooth-transition">
+        
+        <div>
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 flex items-center gap-2">
+            <i data-lucide="sliders" class="w-4 h-4"></i>
+            เลือกคู่ฟอนต์ (Font Pairings)
+          </h2>
+
+          <div class="space-y-3">
+            <!-- Option 1 -->
+            <label id="labelPair1" onclick="selectFontPair(1)" class="block cursor-pointer p-4 rounded-xl border-2 transition-all border-sky-500 bg-sky-50/50 dark:bg-sky-950/20">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="inline-block px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-sky-100 dark:bg-sky-900/60 text-sky-700 dark:text-sky-300 mb-1">
+                    ชุดที่ 1 (Modern & Corporate)
+                  </span>
+                  <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base" style="font-family: 'Prompt';">Prompt + IBM Plex Sans</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">หัวข้อ: Prompt (700)<br>เนื้อหา: IBM Plex Sans Thai (400)</p>
+                </div>
+                <input type="radio" name="fontPair" value="1" checked class="mt-1 text-sky-600 focus:ring-sky-500">
+              </div>
+            </label>
+
+            <!-- Option 2 -->
+            <label id="labelPair2" onclick="selectFontPair(2)" class="block cursor-pointer p-4 rounded-xl border-2 transition-all border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700">
+              <div class="flex items-start justify-between">
+                <div>
+                  <span class="inline-block px-2 py-0.5 text-[10px] font-bold uppercase rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 mb-1">
+                    ชุดที่ 2 (Clean & Friendly)
+                  </span>
+                  <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base" style="font-family: 'Kanit';">Kanit + Noto Sans Thai</h3>
+                  <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">หัวข้อ: Kanit (600)<br>เนื้อหา: Noto Sans Thai (400)</p>
+                </div>
+                <input type="radio" name="fontPair" value="2" class="mt-1 text-sky-600 focus:ring-sky-500">
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Theme Preset Controls -->
+        <div>
+          <h2 class="text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-4 flex items-center gap-2">
+            <i data-lucide="palette" class="w-4 h-4"></i>
+            โหมดสีหน้าจอ (Theme)
+          </h2>
+          <div class="grid grid-cols-2 gap-3">
+            <button onclick="setTheme('light')" id="btnThemeLight" class="p-3 rounded-xl border-2 border-sky-500 bg-white text-slate-800 text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm">
+              <span class="w-3 h-3 rounded-full bg-slate-200 border border-slate-400"></span>
+              <span>Light (ขาว)</span>
+            </button>
+            <button onclick="setTheme('dark')" id="btnThemeDark" class="p-3 rounded-xl border-2 border-transparent bg-slate-900 text-white text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm">
+              <span class="w-3 h-3 rounded-full bg-slate-800 border border-slate-600"></span>
+              <span>Dark (ดำ)</span>
+            </button>
+          </div>
+        </div>
+
+        <hr class="border-slate-200 dark:border-slate-800">
+
+        <!-- Custom Chinese Text Input -->
+        <div>
+          <label class="block text-sm font-semibold uppercase tracking-wider text-slate-400 dark:text-slate-500 mb-2 flex items-center gap-2">
+            <i data-lucide="languages" class="w-4 h-4"></i>
+            ทดสอบตัวอักษรจีน (Chinese Text)
+          </label>
+          <input type="text" id="chineseInput" value="甲乙丙丁戊己庚辛壬癸" oninput="updateChineseText(this.value)" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <p class="text-[11px] text-slate-400 dark:text-slate-500 mt-1.5">ลำดับกิ่งฟ้าทั้งสิบ (Ten Heavenly Stems)</p>
+        </div>
+
+      </div>
+    </aside>
+
+    <!-- Interactive Typography Preview Canvas -->
+    <section class="lg:col-span-8 space-y-6">
+
+      <!-- Display Card Container -->
+      <div id="previewCard" class="font-pair-1 bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-10 border border-slate-200 dark:border-slate-800 shadow-xl smooth-transition space-y-8">
+        
+        <!-- Badge Indicator -->
+        <div class="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-4">
+          <div class="flex items-center space-x-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span id="activePairBadge" class="text-xs font-semibold text-slate-400 dark:text-slate-500 uppercase tracking-wider">
+              Prompt + IBM Plex Sans Thai
+            </span>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-500 dark:text-slate-400">
+            Preview Area
+          </span>
+        </div>
+
+        <!-- Typography Samples -->
+        <div class="space-y-6">
+
+          <!-- Heading 1 -->
+          <div>
+            <span class="text-[10px] uppercase font-mono text-slate-400 dark:text-slate-500 block mb-1">Heading 1 (h1)</span>
+            <h1 class="font-heading text-3xl sm:text-4xl text-slate-900 dark:text-white leading-tight">
+              ก้าวสู่ยุคใหม่ของการพัฒนาเว็บอินเทอร์เฟซ
+            </h1>
+          </div>
+
+          <!-- Heading 2 -->
+          <div>
+            <span class="text-[10px] uppercase font-mono text-slate-400 dark:text-slate-500 block mb-1">Heading 2 (h2)</span>
+            <h2 class="font-heading text-xl sm:text-2xl text-slate-800 dark:text-slate-100">
+              การเลือกใช้ Typography ที่เหมาะสมกับแบรนด์
+            </h2>
+          </div>
+
+          <!-- Body Paragraph -->
+          <div>
+            <span class="text-[10px] uppercase font-mono text-slate-400 dark:text-slate-500 block mb-1">Body Text (p)</span>
+            <p class="font-body text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+              การผสมผสานระหว่างฟอนต์หัวข้อที่มีเอกลักษณ์และฟอนต์เนื้อหาที่อ่านง่าย ช่วยเพิ่มประสบการณ์การใช้งานที่ดีเยี่ยมให้กับผู้ใช้ ทั้งในด้านความสวยงามและการสื่อสารข้อมูลอย่างมีประสิทธิภาพ
+            </p>
+          </div>
+
+          <!-- Special Chinese Characters Highlight Box -->
+          <div class="mt-8 p-6 rounded-2xl bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-sky-500/10 border border-amber-500/20 dark:border-amber-500/30 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-semibold text-amber-700 dark:text-amber-400 uppercase tracking-wide flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                ตัวอย่างอักษรจีน (Chinese Characters Line)
+              </span>
+              <span class="text-[11px] font-mono text-slate-500 dark:text-slate-400">Noto Sans SC / Noto Serif SC</span>
+            </div>
+
+            <!-- Chinese Display Line -->
+            <div id="chineseDisplay" class="font-chinese text-2xl sm:text-3xl font-medium text-slate-900 dark:text-amber-200 tracking-wider py-1 break-all">
+              甲乙丙丁戊己庚辛壬癸
+            </div>
+
+            <p class="font-body text-xs text-slate-500 dark:text-slate-400">
+              ข้อความภาษาไทยร่วมกับภาษาจีน: <span class="font-chinese font-semibold text-slate-700 dark:text-slate-200">甲乙丙丁戊己庚辛壬癸</span> (ลำดับสิบกิ่งฟ้าในปฏิทินจีนโบราณ)
+            </p>
+          </div>
+
+          <!-- Card Component Example -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 space-y-2">
+              <h3 class="font-heading text-lg font-bold text-slate-900 dark:text-white">บทความแนะนำ</h3>
+              <p class="font-body text-sm text-slate-600 dark:text-slate-300">
+                เรียนรู้วิธีการจัดทำคู่สีและฟอนต์สำหรับเว็บไซต์องค์กรยุคใหม่ด้วยวิธีง่ายๆ
+              </p>
+            </div>
+
+            <div class="p-5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 space-y-2">
+              <h3 class="font-heading text-lg font-bold text-slate-900 dark:text-white">ระบบอเนกประสงค์</h3>
+              <p class="font-body text-sm text-slate-600 dark:text-slate-300">
+                รองรับการแสดงผลภาษาไทยร่วมกับภาษาจีนอย่างลงตัว สมบูรณ์แบบทุกขนาดหน้าจอ
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal Dialog for CSS Code Snippet -->
+  <div id="codeModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-200">
+    <div class="bg-white dark:bg-slate-900 rounded-2xl max-w-2xl w-full border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+      
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-slate-50 dark:bg-slate-800/50">
+        <h3 class="font-bold text-slate-800 dark:text-slate-100 text-sm flex items-center gap-2">
+          <i data-lucide="code" class="w-4 h-4 text-sky-500"></i>
+          รหัส CSS สำหรับนำไปใช้งาน (CSS Code)
+        </h3>
+        <button onclick="toggleCodeModal()" class="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="p-6 overflow-y-auto space-y-4">
+        <p class="text-xs text-slate-500 dark:text-slate-400">
+          คัดลอก HTML `<link>` และ CSS ไปวางในเว็บไซต์ของคุณเพื่อเริ่มใช้งานคู่ฟอนต์นี้ทันที:
+        </p>
+
+        <!-- Google Fonts Link -->
+        <div>
+          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">1. Google Fonts Import (HTML Head)</span>
+          <pre class="bg-slate-950 text-sky-300 text-xs p-3.5 rounded-xl overflow-x-auto font-mono border border-slate-800"><code>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;600&family=Kanit:wght@600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Sans+Thai:wght@400;600&family=Prompt:wght@700&display=swap" rel="stylesheet"&gt;</code></pre>
+        </div>
+
+        <!-- CSS Rules Snippet -->
+        <div>
+          <span class="text-[11px] font-semibold text-slate-400 uppercase tracking-wider block mb-1">2. Rules in CSS</span>
+          <pre id="cssSnippetCode" class="bg-slate-950 text-emerald-400 text-xs p-3.5 rounded-xl overflow-x-auto font-mono border border-slate-800"><code>/* CSS Snippet */</code></pre>
+        </div>
+      </div>
+
+      <div class="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end space-x-3 bg-slate-50 dark:bg-slate-800/50">
+        <button onclick="copyCSSCode()" class="px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-semibold flex items-center gap-1.5 shadow-sm">
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span id="copyBtnText">คัดลอกโค้ด</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    let currentFontPair = 1;
+    let currentTheme = 'light';
+
+    const cssSnippet1 = `/* ชุดที่ 1: Prompt + IBM Plex Sans Thai + Noto Sans SC */
+h1, h2, h3 { 
+  font-family: 'Prompt', sans-serif; 
+  font-weight: 700; 
+}
+
+body { 
+  font-family: 'IBM Plex Sans Thai', sans-serif; 
+  font-weight: 400; 
+}
+
+/* สำหรับตัวอักษรจีน */
+.chinese-text {
+  font-family: 'Noto Sans SC', 'IBM Plex Sans Thai', sans-serif;
+  font-weight: 500;
+}`;
+
+    const cssSnippet2 = `/* ชุดที่ 2: Kanit + Noto Sans Thai + Noto Serif SC */
+h1, h2, h3 { 
+  font-family: 'Kanit', sans-serif; 
+  font-weight: 600; 
+}
+
+body { 
+  font-family: 'Noto Sans Thai', sans-serif; 
+  font-weight: 400; 
+}
+
+/* สำหรับตัวอักษรจีน */
+.chinese-text {
+  font-family: 'Noto Serif SC', 'Noto Sans Thai', serif;
+  font-weight: 600;
+}`;
+
+    // Select Font Pair
+    function selectFontPair(pairNumber) {
+      currentFontPair = pairNumber;
+      const previewCard = document.getElementById('previewCard');
+      const badge = document.getElementById('activePairBadge');
+      const label1 = document.getElementById('labelPair1');
+      const label2 = document.getElementById('labelPair2');
+      const radio1 = document.querySelector('input[name="fontPair"][value="1"]');
+      const radio2 = document.querySelector('input[name="fontPair"][value="2"]');
+
+      if (pairNumber === 1) {
+        previewCard.className = previewCard.className.replace('font-pair-2', 'font-pair-1');
+        badge.textContent = "Prompt + IBM Plex Sans Thai";
+        
+        // Active borders
+        label1.className = "block cursor-pointer p-4 rounded-xl border-2 transition-all border-sky-500 bg-sky-50/50 dark:bg-sky-950/20";
+        label2.className = "block cursor-pointer p-4 rounded-xl border-2 transition-all border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700";
+        radio1.checked = true;
+      } else {
+        previewCard.className = previewCard.className.replace('font-pair-1', 'font-pair-2');
+        badge.textContent = "Kanit + Noto Sans Thai";
+
+        // Active borders
+        label2.className = "block cursor-pointer p-4 rounded-xl border-2 transition-all border-sky-500 bg-sky-50/50 dark:bg-sky-950/20";
+        label1.className = "block cursor-pointer p-4 rounded-xl border-2 transition-all border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700";
+        radio2.checked = true;
+      }
+
+      updateCSSSnippet();
+    }
+
+    // Set Theme
+    function setTheme(theme) {
+      currentTheme = theme;
+      const html = document.documentElement;
+      const themeLabel = document.getElementById('themeLabel');
+      const btnLight = document.getElementById('btnThemeLight');
+      const btnDark = document.getElementById('btnThemeDark');
+
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        themeLabel.textContent = 'Dark Mode';
+        btnDark.className = "p-3 rounded-xl border-2 border-sky-500 bg-slate-900 text-white text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm";
+        btnLight.className = "p-3 rounded-xl border-2 border-transparent bg-white text-slate-800 text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm";
+      } else {
+        html.classList.remove('dark');
+        themeLabel.textContent = 'Light Mode';
+        btnLight.className = "p-3 rounded-xl border-2 border-sky-500 bg-white text-slate-800 text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm";
+        btnDark.className = "p-3 rounded-xl border-2 border-transparent bg-slate-900 text-white text-xs font-semibold flex items-center justify-center space-x-2 shadow-sm";
+      }
+    }
+
+    function toggleTheme() {
+      setTheme(currentTheme === 'light' ? 'dark' : 'light');
+    }
+
+    // Update Chinese Text dynamically
+    function updateChineseText(text) {
+      const display = document.getElementById('chineseDisplay');
+      display.textContent = text || '甲乙丙丁戊己庚辛壬癸';
+    }
+
+    // CSS Code Modal controls
+    function updateCSSSnippet() {
+      const codeBlock = document.getElementById('cssSnippetCode');
+      codeBlock.textContent = currentFontPair === 1 ? cssSnippet1 : cssSnippet2;
+    }
+
+    function toggleCodeModal() {
+      const modal = document.getElementById('codeModal');
+      updateCSSSnippet();
+
+      if (modal.classList.contains('hidden')) {
+        modal.classList.remove('hidden');
+        setTimeout(() => modal.classList.remove('opacity-0'), 10);
+      } else {
+        modal.classList.add('opacity-0');
+        setTimeout(() => modal.classList.add('hidden'), 200);
+      }
+    }
+
+    function copyCSSCode() {
+      const textToCopy = currentFontPair === 1 ? cssSnippet1 : cssSnippet2;
+      
+      // Fallback copy execution
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+
+      const copyBtnText = document.getElementById('copyBtnText');
+      copyBtnText.textContent = 'คัดลอกเรียบร้อย!';
+      setTimeout(() => {
+        copyBtnText.textContent = 'คัดลอกโค้ด';
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
